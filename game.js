@@ -68,11 +68,11 @@ window.onload = function () {
                 }
             }
             
-            if(!(o.beta > 45||o.beta < -45)){
+            if(!(o.beta > 40||o.beta < -45)){
                 player.y = 240 + o.beta * 2;
             }else{
                 if(o.beta > 0){
-                    player.y = 330;
+                    player.y = 320;
                 }else{
                     player.y = 150; 
                 }
