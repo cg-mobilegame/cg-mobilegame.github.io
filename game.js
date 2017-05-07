@@ -59,22 +59,22 @@ window.onload = function () {
             //player.body.velocity.y += o.beta / 20;
             
             if(!(o.gamma > 45||o.gamma < -45)){
-                player.x = 160 + o.gamma * 2;
+                player.x = 164 + o.gamma * 2;
             }else{
                 if(o.gamma > 0){
-                    player.x = 250;
+                    player.x = 254;
                 }else{
-                    player.x = 70
+                    player.x = 74
                 }
             }
             
-            if(!(o.beta > 40||o.beta < -45)){
-                player.y = 240 + o.beta * 2;
+            if(!(o.beta > 45||o.beta < -45)){
+                player.y = 230 + o.beta * 2;
             }else{
                 if(o.beta > 0){
                     player.y = 320;
                 }else{
-                    player.y = 150; 
+                    player.y = 140; 
                 }
             }
             //player.x = 160 + o.gamma * 2;
