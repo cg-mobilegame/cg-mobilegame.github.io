@@ -13,7 +13,7 @@ window.onload = function () {
 
     // function executed on preload
     function onPreload() {
-        game.load.image("player", "assets/guy.png",32,64);
+        game.load.spritesheet("player", "assets/guy.png",32,64);
         game.load.image("bgtile", "assets/office.png");
         game.load.audio("bgsound", "assets/sounds/mainBackground.ogg");
 
@@ -44,7 +44,8 @@ window.onload = function () {
 
         // adding the player on stage
         player = game.add.sprite(160, 240, "player");
-        player.animations.add('run', [0, 1], 3, true);
+        player.frame = 0;
+        player.animations.add('run', [0, 1], 10, true);
         player.animations.play('run');
         //bgtile = game.add.tileSprite(0,0,game.stage.bounds.width, game.cache.getImage('bgtile').height, 'bgtile');
         //change background color
