@@ -57,8 +57,20 @@ window.onload = function () {
             // updating player velocity
             //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
             //player.body.velocity.y += o.beta / 20;
-            player.x = 144 + o.gamma; // TODO, CHANGE THIS??
-            player.y = 240 + o.beta;
+            
+            if(!(o.gamma > 45)){
+                player.x = 160 + o.gamma * 2;
+            }else{
+                player.x = 250;
+            }
+            
+            if(!(o.beta > 45)){
+                player.y = 160 + o.beta * 2;
+            }else{
+                player.y = 250;
+            }
+            //player.x = 160 + o.gamma * 2;
+            //player.y = 240 + o.beta * 2;
         });
     }
 
