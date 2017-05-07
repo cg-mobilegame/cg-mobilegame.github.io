@@ -55,8 +55,8 @@ window.onload = function () {
             // updating player velocity
             //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
             //player.body.velocity.y += o.beta / 20;
-            player.body.x = o.gamma; // TODO, CHANGE THIS??
-            player.body.y = o.beta;
+            player.body.x = o.gamma * 360; // TODO, CHANGE THIS??
+            player.body.y = o.beta * 360;
         });
     }
 
@@ -82,13 +82,13 @@ window.onload = function () {
 //            bgtileAhead.y += 4;
 //        }
 
-        bgtile.y += 3;
-        bgtileAhead.y += 3;
-        if(bgtile.y > game.world.centerY * 2){
-            bgtile.y = -game.world.centerY;
+        bgtile.y += 2;
+        bgtileAhead.y += 2;
+        if(bgtile.y > game.world.centerY * 3 - 1){
+            bgtile.y = -game.world.centerY + 1;
         }
-        if(bgtileAhead.y > game.world.centerY * 2){
-            bgtileAhead.y = -game.world.centerY;
+        if(bgtileAhead.y > game.world.centerY * 3 - 1){
+            bgtileAhead.y = -game.world.centerY + 1;
         }
 
     }
