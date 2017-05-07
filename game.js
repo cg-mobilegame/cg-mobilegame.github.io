@@ -1,7 +1,9 @@
+/* global Phaser, gyro */
+
 window.onload = function () {
 
     // game definition, 320x480
-    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {preload: onPreload, create: onCreate, update: update});
+    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {preload: onPreload, create: onCreate, update: update, render: render});
 
     // the player
     var player;
@@ -11,7 +13,7 @@ window.onload = function () {
     // function executed on preload
     function onPreload() {
         game.load.image("player", "mainCharacter/shoot_up.png");
-        game.load.image("bgtile", "office.jpg");
+        game.load.image("bgtile", "office.png");
     }
 
     // function to scale up the game to full screen
@@ -53,35 +55,15 @@ window.onload = function () {
         // start gyroscope detection
         gyro.startTracking(function (o) {
             // updating player velocity
-            //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
-            //player.body.velocity.y += o.beta / 20;
-            player.body.x = o.gamma * 360; // TODO, CHANGE THIS??
-            player.body.y = o.beta * 360;
+            player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
+            player.body.velocity.y += o.beta / 20;
+            console.log("The value of o.beta is: " + o.beta);
+            //player.body.x = o.gamma * 360; // TODO, CHANGE THIS??
+            //player.body.y = o.beta * 360;
         });
     }
 
     function update() {
-
-//        if (game.input.keyboard.isDown(Phaser.Keyboard.LEFT))
-//        {
-//            bgtile.x -= 4;
-//            bgtileAhead.x -= 4;
-//        } else if (game.input.keyboard.isDown(Phaser.Keyboard.RIGHT))
-//        {
-//            bgtile.x += 4;
-//            bgtileAhead.x += 4;
-//        }
-//
-//        if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
-//        {
-//            bgtile.y -= 4;
-//            bgtileAhead.y -= 4;
-//        } else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
-//        {
-//            bgtile.y += 4;
-//            bgtileAhead.y += 4;
-//        }
-
         bgtile.y += 2;
         bgtileAhead.y += 2;
         if(bgtile.y > game.world.centerY * 3 - 1){
@@ -90,10 +72,9 @@ window.onload = function () {
         if(bgtileAhead.y > game.world.centerY * 3 - 1){
             bgtileAhead.y = -game.world.centerY + 1;
         }
-
     }
-
-    // function update() {
-    //      bgtile.tilePosition.x -= 1;
-    // }
-}
+    
+    function render() {
+        game.debug.spriteInfo(player, 32, 32);
+    }
+};
