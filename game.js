@@ -55,10 +55,10 @@ window.onload = function () {
         // start gyroscope detection
         gyro.startTracking(function (o) {
             // updating player velocity
-            player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
-            player.body.velocity.y += o.beta / 20;
-            //player.body.x = o.gamma * 360; // TODO, CHANGE THIS??
-            //player.body.y = o.beta * 360;
+            //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
+            //player.body.velocity.y += o.beta / 20;
+            player.x = o.gamma; // TODO, CHANGE THIS??
+            player.y = o.beta;
         });
     }
 
