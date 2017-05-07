@@ -57,8 +57,8 @@ window.onload = function () {
             // updating player velocity
             //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
             //player.body.velocity.y += o.beta / 20;
-            player.x = o.gamma; // TODO, CHANGE THIS??
-            player.y = o.beta;
+            player.x = 144 + o.gamma; // TODO, CHANGE THIS??
+            player.y = 240 + o.beta;
         });
     }
 
