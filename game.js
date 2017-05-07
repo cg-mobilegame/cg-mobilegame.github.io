@@ -45,12 +45,9 @@ window.onload = function () {
         // adding the player on stage
         player = game.add.sprite(160, 240, "player");
         player.frame = 0;
-        player.animations.add('run', [0, 1], 10, true);
+        player.animations.add('run', [0, 1], 8, true);
         player.animations.play('run');
-        //bgtile = game.add.tileSprite(0,0,game.stage.bounds.width, game.cache.getImage('bgtile').height, 'bgtile');
-        //change background color
-
-        //game.stage.backgroundColor = '#fff7af';
+        
         // setting player anchor point
         player.anchor.setTo(0.5, -1.5);
         // enabling physics car.body.collideWorldBounds = true;
