@@ -14,6 +14,8 @@ window.onload = function () {
     // function executed on preload
     function onPreload() {
         game.load.spritesheet("player", "assets/guy.png",32,64);
+        game.load.spritesheet("boss","assets/boss.png",32,32);
+        game.load.spritesheet("paper","assets/Paper.png",32,32);
         game.load.image("bgtile", "assets/office.png");
         game.load.audio("bgsound", "assets/sounds/mainBackground.ogg");
 
@@ -45,8 +47,20 @@ window.onload = function () {
         // adding the player on stage
         player = game.add.sprite(160, 240, "player");
         player.frame = 0;
-        player.animations.add('run', [0, 1], 8, true);
-        player.animations.play('run');
+        player.animations.add('playerRun', [0, 1], 8, true);
+        player.animations.play('playerRun');
+
+        // // adding Boss obstacle on the stage
+        // boss = game.add.sprite(160,480, "boss");
+        // boss.frame = 0;
+        // boss.animations.add('bossRun', [0,1,2,3],5,true);
+        // player.animations.play('bossRun');
+
+        // // adding Paper obstacle on the stage
+        // paper = game.add.sprite(100,480, "paper");
+        // paper.frame = 0;
+        // paper.animations.add('paperChange', [0,1,2],5,true);
+        // paper.animations.play('paperChange');
         
         // setting player anchor point
         player.anchor.setTo(0.5, -1.5);
