@@ -62,7 +62,7 @@ window.onload = function () {
         player.animations.play('playerRun');
         
         //Set Gravity
-        game.physics.arcade.gravity.y = 150;
+        game.physics.arcade.gravity.y = 240;
         // setting player anchor point
         player.anchor.setTo(0.5, -1.5);
         // enabling physics car.body.collideWorldBounds = true;
@@ -92,7 +92,7 @@ window.onload = function () {
         });
 
         //Random spawns of enemies.
-        game.time.events.repeat(Phaser.Timer.SECOND * 10, 60, newBoss, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 10, 120, newBoss, this);
         game.time.events.repeat(Phaser.Timer.SECOND * 3, 2400, newPaper, this);
     }
 
