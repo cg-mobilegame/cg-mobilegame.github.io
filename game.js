@@ -43,8 +43,8 @@ window.onload = function () {
         bgtileAhead = game.add.sprite(game.world.centerX, -game.world.centerY, "bgtile");
         bgtileAhead.anchor.setTo(0.5, 0.5);
 
-        bgsound = new Phaser.sound('bgsound',1,true); //true means looping is enabled.
-        setTimeout(function() {bgsound.play();},100);
+        //bgsound = new Phaser.sound('bgsound',1,true); //true means looping is enabled.
+        //setTimeout(function() {bgsound.play();},100);
 
         // adding the player on stage
         player = game.add.sprite(160, 320, "player");
