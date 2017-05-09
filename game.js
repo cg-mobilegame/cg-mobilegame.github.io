@@ -45,7 +45,7 @@ window.onload = function () {
         setTimeout(function() {bgsound.play();},100);
 
         // adding the player on stage
-        player = game.add.sprite(160, 240, "player");
+        player = game.add.sprite(160, 320, "player");
         player.frame = 0;
         player.animations.add('playerRun', [0, 1], 8, true);
         player.animations.play('playerRun');
@@ -87,12 +87,12 @@ window.onload = function () {
     }
     function newBoss() {
         // adding Boss obstacle on the stage
-        boss = game.add.sprite(game.world.randomX, 0, "boss");
+        var boss = game.add.sprite(game.world.randomX, 0, "boss");
         boss.frame = 0;
     }
     function newPaper(){
         // adding Paper obstacle on the stage
-        paper = game.add.sprite(100,480, "paper");
+        var paper = game.add.sprite(100,480, "paper");
         paper.frame = 0;
     }
 
