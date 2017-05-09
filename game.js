@@ -81,8 +81,7 @@ window.onload = function () {
             //Player's position set to the bottom of the screen.
             player.y = 320;
         });
-        //Update boss size
-        boss.scale.setTo(2);
+        
         //Random spawns of enemies.
         game.time.events.repeat(Phaser.Timer.SECOND * 10, 60, newBoss, this);
         game.time.events.repeat(Phaser.Timer.SECOND * 2, 300, newPaper, this);
@@ -94,6 +93,8 @@ window.onload = function () {
         var boss = game.add.sprite(random, 0, "boss");
         game.physics.enable(boss, Phaser.Physics.ARCADE);
         boss.body.collideWorldBounds = false;
+        //Update boss size
+        boss.scale.setTo(2);
         boss.frame = 0;
     }
     function newPaper(){
