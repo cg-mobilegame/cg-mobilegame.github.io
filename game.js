@@ -6,6 +6,8 @@ window.onload = function () {
     var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {preload: onPreload, create: onCreate, update: update, render: render});
 
     // the player
+    var boss;
+    var paper;
     var player;
     var bgtile;
     var bgtileAhead;
@@ -90,7 +92,7 @@ window.onload = function () {
     function newBoss() {
         // adding Boss obstacle on the stage
         var random = game.rnd.integerInRange(74, 254);
-        var boss = game.add.sprite(random, 0, "boss");
+        boss = game.add.sprite(random, 0, "boss");
         game.physics.enable(boss, Phaser.Physics.ARCADE);
         boss.body.collideWorldBounds = false;
         //Update boss size
@@ -100,7 +102,7 @@ window.onload = function () {
     function newPaper(){
         // adding Paper obstacle on the stage
         var random = game.rnd.integerInRange(74, 254);
-        var paper = game.add.sprite(random, 0, "paper");
+        paper = game.add.sprite(random, 0, "paper");
         game.physics.enable(paper, Phaser.Physics.ARCADE);
         paper.body.collideWorldBounds = false;
         paper.frame = 0;
