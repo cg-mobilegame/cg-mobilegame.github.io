@@ -80,7 +80,7 @@ window.onload = function () {
             player.y = 320;
         });
         
-        game.time.events.repeat(Phaser.time.SECOND * 10, 5, newBoss,this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss,this);
         
         
         
