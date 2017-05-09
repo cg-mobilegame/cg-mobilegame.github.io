@@ -81,8 +81,9 @@ window.onload = function () {
             //Player's position set to the bottom of the screen.
             player.y = 320;
         });
-        
-        game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss, this);  
+        //Random spawns of enemies.
+        game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, newPaper, this);
     }
     
     function newBoss() {
