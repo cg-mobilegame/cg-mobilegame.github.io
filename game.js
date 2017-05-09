@@ -66,6 +66,7 @@ window.onload = function () {
             //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
             //player.body.velocity.y += o.beta / 20;
             
+            //Player's position confined to the bounds of the background
             if(!(o.gamma > 45||o.gamma < -45)){
                 player.x = 164 + o.gamma * 2;
             }else{
@@ -75,22 +76,11 @@ window.onload = function () {
                     player.x = 74
                 }
             }
-            
-            /*if(!(o.beta > 45||o.beta < -45)){
-                player.y = 230 + o.beta * 2;
-            }else{
-                if(o.beta > 0){
-                    player.y = 320;
-                }else{
-                    player.y = 140; 
-                }
-            }
-            //player.x = 160 + o.gamma * 2;
-            //player.y = 240 + o.beta * 2;*/
+            //Player's position set to the bottom of the screen.
             player.y = 320;
         });
         
-        
+        game.time.events.repeat(Phaser.time.SECOND * 10, 5, newBoss,this);
         
         
         
@@ -99,15 +89,11 @@ window.onload = function () {
         // adding Boss obstacle on the stage
         boss = game.add.sprite(game.world.randomX, 0, "boss");
         boss.frame = 0;
-        boss.animations.add('bossRun', [0,1,2,3],5,true);
-        player.animations.play('bossRun');
     }
     function newPaper(){
         // adding Paper obstacle on the stage
         paper = game.add.sprite(100,480, "paper");
         paper.frame = 0;
-        paper.animations.add('paperChange', [0,1,2],5,true);
-        paper.animations.play('paperChange');
     }
 
     function update() {
