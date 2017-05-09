@@ -87,7 +87,7 @@ window.onload = function () {
     }
     function newBoss() {
         // adding Boss obstacle on the stage
-        var boss = game.add.sprite(game.world.randomX, 0, "boss");
+        var boss = game.add.sprite(Phaser.World.bounds(74, 254), 0, "boss");
         boss.frame = 0;
     }
     function newPaper(){
@@ -108,6 +108,6 @@ window.onload = function () {
     }
     
     function render() {
-        game.debug.spriteInfo(boss, 32, 32);
+        game.debug.spriteInfo(player, 32, 32);
     }
 };
