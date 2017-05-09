@@ -81,9 +81,11 @@ window.onload = function () {
             //Player's position set to the bottom of the screen.
             player.y = 320;
         });
+        //Update boss size
+        boss.scale.setTo(2);
         //Random spawns of enemies.
-        game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss, this);
-        game.time.events.repeat(Phaser.Timer.SECOND * 2, 10, newPaper, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 10, 60, newBoss, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 2, 300, newPaper, this);
     }
     
     function newBoss() {
@@ -116,7 +118,7 @@ window.onload = function () {
     
     function render() {
         //game.debug.spriteInfo(player, 32, 32);
-        var seconds = game.time.totalElapsedSeconds();
+        var seconds = game.time.totalElapsedSeconds().toFixed(0);
         game.debug.text('Score: ' + seconds * 1000, 64, 64);
     }
 }
