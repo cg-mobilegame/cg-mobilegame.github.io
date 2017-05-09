@@ -3,7 +3,7 @@
 window.onload = function () {
 
     // game definition, 320x480
-    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {boot: onBoot, preload: onPreload, create: onCreate, update: update, render: render});
+    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {preload: onPreload, create: onCreate, update: update, render: render});
 
     var boss;
     var paper;
@@ -23,14 +23,11 @@ window.onload = function () {
         game.scale.setScreenSize(true);
     }
 
-    function onBoot() {
-        // initializing physics system
+    // function executed on preload to load assets
+    function onPreload() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
         // going full screen
         goFullScreen();
-    }
-    // function executed on preload to load assets
-    function onPreload() {
         // display Loading text while game is loading
         loading = game.add.text(game.world.centerX, game.world.centerY, "Loading...",{
                 font:"bold 50px Courier",
