@@ -50,6 +50,8 @@ window.onload = function () {
         player.animations.add('playerRun', [0, 1], 8, true);
         player.animations.play('playerRun');
         
+        //Set Gravity
+        game.physics.arcade.gravity.y = 150;
         // setting player anchor point
         player.anchor.setTo(0.5, -1.5);
         // enabling physics car.body.collideWorldBounds = true;
