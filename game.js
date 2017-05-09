@@ -96,7 +96,10 @@ window.onload = function () {
     }
     function newPaper(){
         // adding Paper obstacle on the stage
-        var paper = game.add.sprite(100,480, "paper");
+        var random = game.rnd.integerInRange(74, 254);
+        var paper = game.add.sprite(random, 0, "paper");
+        game.physics.enable(paper, Phaser.Physics.ARCADE);
+        paper.body.collideWorldBounds = false;
         paper.frame = 0;
     }
 
