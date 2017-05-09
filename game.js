@@ -14,7 +14,7 @@ window.onload = function () {
     // function executed on preload
     function onPreload() {
         game.load.spritesheet("player", "assets/guy.png",32,64);
-        game.load.spritesheet("boss","assets/boss.png",32,32);
+        game.load.spritesheet("boss","assets/Boss.png",32,32);
         game.load.spritesheet("paper","assets/Paper.png",32,32);
         game.load.image("bgtile", "assets/office.png");
         game.load.audio("bgsound", "assets/sounds/mainBackground.ogg");
@@ -80,7 +80,7 @@ window.onload = function () {
             player.y = 320;
         });
         
-        //game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss,this);  
+        game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss, this);  
     }
     
     function newBoss() {
