@@ -109,6 +109,7 @@ window.onload = function () {
     
     function render() {
         //game.debug.spriteInfo(player, 32, 32);
-        game.debug.text('Score: ' + game.time.totalElapsedSeconds()*1000, 64, 64);
+        var seconds = game.time.totalElapsedSeconds();
+        game.debug.text('Score: ' + seconds * 1000, 64, 64);
     }
 }
