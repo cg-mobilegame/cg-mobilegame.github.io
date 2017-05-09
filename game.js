@@ -31,10 +31,6 @@ window.onload = function () {
     }
     // function executed on preload to load assets
     function onPreload() {
-        // initializing physics system
-        game.physics.startSystem(Phaser.Physics.ARCADE);
-        // going full screen
-        goFullScreen();
         // display Loading text while game is loading
         loading = game.add.text(game.world.centerX, game.world.centerY, "Loading...",{
                 font:"bold 50px Courier",
