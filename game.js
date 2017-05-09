@@ -89,7 +89,7 @@ window.onload = function () {
         // adding Boss obstacle on the stage
         var boss = game.add.sprite(Phaser.World.bounds(74, 254), 0, "boss");
         game.physics.enable(boss, Phaser.Physics.ARCADE);
-        boss.body.collideWorldBounds = false;
+        //boss.body.collideWorldBounds = false;
         boss.frame = 0;
     }
     function newPaper(){
