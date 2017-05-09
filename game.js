@@ -107,6 +107,9 @@ window.onload = function () {
         paper.body.collideWorldBounds = false;
         paper.frame = 0;
     }
+    function handleCollision(){
+        player.animations.stop('playerRun', true);
+    }
 
     function update() {
         bgtile.y += 2;
@@ -117,7 +120,7 @@ window.onload = function () {
         if(bgtileAhead.y > game.world.centerY * 3 - 1){
             bgtileAhead.y = -game.world.centerY + 1;
         }
-        //game.physics.arcade.collide(player, boss, location.reload());
+        game.physics.arcade.collide(player, boss, handleCollision);
         //game.physics.arcade.collide(player, paper, location.reload());
     }
     
