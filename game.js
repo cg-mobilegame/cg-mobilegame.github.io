@@ -87,8 +87,8 @@ window.onload = function () {
         // adding Boss obstacle on the stage
         var random = game.rnd.integerInRange(74, 254);
         var boss = game.add.sprite(random, 0, "boss");
-        //game.physics.enable(boss, Phaser.Physics.ARCADE);
-        //boss.body.collideWorldBounds = false;
+        game.physics.enable(boss, Phaser.Physics.ARCADE);
+        boss.body.collideWorldBounds = false;
         boss.frame = 0;
     }
     function newPaper(){
