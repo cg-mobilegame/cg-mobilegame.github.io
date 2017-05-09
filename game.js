@@ -86,7 +86,7 @@ window.onload = function () {
         
         //Random spawns of enemies.
         game.time.events.repeat(Phaser.Timer.SECOND * 10, 60, newBoss, this);
-        game.time.events.repeat(Phaser.Timer.SECOND * 2, 300, newPaper, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 3, 200, newPaper, this);
     }
     
     function newBoss() {
@@ -109,6 +109,8 @@ window.onload = function () {
     }
     function handleCollision(){
         player.animations.stop('playerRun', true);
+        game.physics.arcade.gravity.y = 0;
+        game.time.events.pause();
     }
 
     function update() {
@@ -121,7 +123,7 @@ window.onload = function () {
             bgtileAhead.y = -game.world.centerY + 1;
         }
         game.physics.arcade.collide(player, boss, handleCollision);
-        //game.physics.arcade.collide(player, paper, location.reload());
+        game.physics.arcade.collide(player, paper, handleCollision);
     }
     
     function render() {
