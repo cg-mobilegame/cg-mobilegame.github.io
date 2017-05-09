@@ -10,7 +10,7 @@ window.onload = function () {
     var bgtile;
     var bgtileAhead;
     var bgsound;
-
+    
     // function executed on preload
     function onPreload() {
         game.load.spritesheet("player", "assets/guy.png",32,64);
@@ -49,18 +49,6 @@ window.onload = function () {
         player.frame = 0;
         player.animations.add('playerRun', [0, 1], 8, true);
         player.animations.play('playerRun');
-
-        // // adding Boss obstacle on the stage
-        // boss = game.add.sprite(160,480, "boss");
-        // boss.frame = 0;
-        // boss.animations.add('bossRun', [0,1,2,3],5,true);
-        // player.animations.play('bossRun');
-
-        // // adding Paper obstacle on the stage
-        // paper = game.add.sprite(100,480, "paper");
-        // paper.frame = 0;
-        // paper.animations.add('paperChange', [0,1,2],5,true);
-        // paper.animations.play('paperChange');
         
         // setting player anchor point
         player.anchor.setTo(0.5, -1.5);
@@ -88,7 +76,7 @@ window.onload = function () {
                 }
             }
             
-            if(!(o.beta > 45||o.beta < -45)){
+            /*if(!(o.beta > 45||o.beta < -45)){
                 player.y = 230 + o.beta * 2;
             }else{
                 if(o.beta > 0){
@@ -98,8 +86,28 @@ window.onload = function () {
                 }
             }
             //player.x = 160 + o.gamma * 2;
-            //player.y = 240 + o.beta * 2;
+            //player.y = 240 + o.beta * 2;*/
+            player.y = 320;
         });
+        
+        
+        
+        
+        
+    }
+    function newBoss() {
+        // adding Boss obstacle on the stage
+        boss = game.add.sprite(game.world.randomX, 0, "boss");
+        boss.frame = 0;
+        boss.animations.add('bossRun', [0,1,2,3],5,true);
+        player.animations.play('bossRun');
+    }
+    function newPaper(){
+        // adding Paper obstacle on the stage
+        paper = game.add.sprite(100,480, "paper");
+        paper.frame = 0;
+        paper.animations.add('paperChange', [0,1,2],5,true);
+        paper.animations.play('paperChange');
     }
 
     function update() {
