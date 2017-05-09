@@ -80,11 +80,9 @@ window.onload = function () {
             player.y = 320;
         });
         
-        game.time.events.repeat(Phaser.Timer.SECOND * 2, 5, newBoss,this);
-        
-        
-        
+        //game.time.events.repeat(Phaser.Timer.SECOND * 10, 5, newBoss,this);  
     }
+    
     function newBoss() {
         // adding Boss obstacle on the stage
         var boss = game.add.sprite(Phaser.World.bounds(74, 254), 0, "boss");
