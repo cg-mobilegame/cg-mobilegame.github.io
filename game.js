@@ -111,6 +111,8 @@ window.onload = function () {
         player.animations.stop('playerRun', true);
         game.physics.arcade.gravity.y = 0;
         game.time.events.pause();
+        var score = game.time.totalElapsedSeconds().toFixed(0);
+        game.debug.text('You scored' + score * 1000, 120, 64);
     }
 
     function update() {
