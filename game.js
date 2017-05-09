@@ -3,26 +3,18 @@
 window.onload = function () {
 
     // game definition, 320x480
-    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {preload: onPreload, create: onCreate, update: update, render: render});
+    var game = new Phaser.Game(320, 480, Phaser.CANVAS, "", {boot: onBoot, preload: onPreload, create: onCreate, update: update, render: render});
 
-    // the player
     var boss;
     var paper;
     var player;
     var bgtile;
-    var bgtileAhead;
     var bgsound;
+    var score;
+    var gameOver;
+    var hit;
+    var loading;
     
-    // function executed on preload
-    function onPreload() {
-        game.load.spritesheet("player", "assets/guy.png",32,64);
-        game.load.spritesheet("boss","assets/Boss.png",32,32);
-        game.load.spritesheet("paper","assets/Paper.png",32,32);
-        game.load.image("bgtile", "assets/office.png");
-        game.load.audio("bgsound", "assets/sounds/mainBackground.ogg");
-
-    }
-
     // function to scale up the game to full screen
     function goFullScreen() {
         game.scale.pageAlignHorizontally = true;
@@ -31,20 +23,44 @@ window.onload = function () {
         game.scale.setScreenSize(true);
     }
 
-    // function to be called when the game has been created
-    function onCreate() {
+    function onBoot() {
         // initializing physics system
         game.physics.startSystem(Phaser.Physics.ARCADE);
         // going full screen
         goFullScreen();
+    }
+    // function executed on preload to load assets
+    function onPreload() {
+        // initializing physics system
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        // going full screen
+        goFullScreen();
+        // display Loading text while game is loading
+        loading = game.add.text(game.world.centerX, game.world.centerY, "Loading...",{
+                font:"bold 50px Courier",
+                fill: "#fff"
+            });
+        loading.anchor.setTo(0.5);
 
-        bgtile = game.add.sprite(game.world.centerX, game.world.centerY, "bgtile");
-        bgtile.anchor.setTo(0.5, 0.5);
-        bgtileAhead = game.add.sprite(game.world.centerX, -game.world.centerY, "bgtile");
-        bgtileAhead.anchor.setTo(0.5, 0.5);
+        // game.load.setPreloadSprite(loading);
+        game.load.spritesheet("player", "assets/mainchar.png",32,64);
+        game.load.spritesheet("boss","assets/Boss.png",32,32);
+        game.load.spritesheet("paper","assets/Paper.png",32,32);
+        game.load.image("bgtile", "assets/office.png");
+        game.load.image("gameOver", "assets/ui/gameOver.png")
+        game.load.audio("bgsound", ["assets/sounds/mainBackground.ogg","assets/sounds/mainBackground.mp3", "assets/sounds/mainBackground.m4a"]);
+        game.load.audio("hit", ['assets/sounds/hit.ogg',"assets/sounds/hit.mp3","assets/sounds/hit.m4a"]);
 
-        bgsound = new Phaser.Sound(game,"bgsound",1,true); //true means looping is enabled.
-       setTimeout(function() {bgsound.play();},100);
+    }
+
+    // function to be called when the game has been created
+    function onCreate() {
+        //tile background
+        bgtile = game.add.tileSprite(0,0,320,480, "bgtile");
+
+        //add background music
+        bgsound = game.add.audio("bgsound");
+        bgsound.play();
 
         // adding the player on stage
         player = game.add.sprite(160, 320, "player");
@@ -62,13 +78,11 @@ window.onload = function () {
         player.body.collideWorldBounds = true;
         // setting player bounce
         player.body.bounce.set(0.0);
+
         // setting gyroscope update frequency
         gyro.frequency = 5;
         // start gyroscope detection
         gyro.startTracking(function (o) {
-            // updating player velocity
-            //player.body.velocity.x += o.gamma / 20; // TODO, CHANGE THIS
-            //player.body.velocity.y += o.beta / 20;
             
             //Player's position confined to the bounds of the background
             if(!(o.gamma > 45||o.gamma < -45)){
@@ -83,12 +97,12 @@ window.onload = function () {
             //Player's position set to the bottom of the screen.
             player.y = 320;
         });
-        
+
         //Random spawns of enemies.
         game.time.events.repeat(Phaser.Timer.SECOND * 10, 60, newBoss, this);
-        game.time.events.repeat(Phaser.Timer.SECOND * 3, 200, newPaper, this);
+        game.time.events.repeat(Phaser.Timer.SECOND * 3, 2400, newPaper, this);
     }
-    
+
     function newBoss() {
         // adding Boss obstacle on the stage
         var random = game.rnd.integerInRange(74, 254);
@@ -108,29 +122,30 @@ window.onload = function () {
         paper.frame = 0;
     }
     function handleCollision(){
-        player.animations.stop('playerRun', true);
+        //handle collision
+        //switching player's animation from "run" to "die"
+        player.animations.add('die',[3,4,5],4,false);
+        player.animations.play('die');
+        gameOver = game.add.sprite(game.world.centerX-120, game.world.centerY-100, "gameOver");
+        //play hit sound
+        hit = game.add.audio('hit');
+        hit.play();
+
         game.physics.arcade.gravity.y = 0;
-        game.time.events.pause();
-        var score = game.time.totalElapsedSeconds().toFixed(0);
-        game.debug.text('You scored' + score * 1000, 120, 64);
     }
 
     function update() {
-        bgtile.y += 2;
-        bgtileAhead.y += 2;
-        if(bgtile.y > game.world.centerY * 3 - 1){
-            bgtile.y = -game.world.centerY + 1;
-        }
-        if(bgtileAhead.y > game.world.centerY * 3 - 1){
-            bgtileAhead.y = -game.world.centerY + 1;
-        }
+        bgtile.tilePosition.y += 2;
+
+        //collision detection
         game.physics.arcade.collide(player, boss, handleCollision);
         game.physics.arcade.collide(player, paper, handleCollision);
     }
-    
-    function render() {
-        //game.debug.spriteInfo(player, 32, 32);
+
+function render() {
+        //display score on the screen (1 second = score 1000)
         var seconds = game.time.totalElapsedSeconds().toFixed(0);
         game.debug.text('Score: ' + seconds * 1000, 64, 64);
+       
     }
 }
