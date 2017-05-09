@@ -110,7 +110,7 @@ window.onload = function () {
     }
     
     function render() {
-        game.debug.spriteInfo(player, 32, 32);
+        //game.debug.spriteInfo(player, 32, 32);
         game.debug.text('Score: ' + game.time.totalElapsedSeconds().toFixed(0)*1000, 64, 64);
     }
 }
