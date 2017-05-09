@@ -85,7 +85,8 @@ window.onload = function () {
     
     function newBoss() {
         // adding Boss obstacle on the stage
-        var boss = game.add.sprite(Phaser.World.bounds(74, 254), 0, "boss");
+        var random = game.rnd.integerInRange(74, 254);
+        var boss = game.add.sprite(random, 0, "boss");
         //game.physics.enable(boss, Phaser.Physics.ARCADE);
         //boss.body.collideWorldBounds = false;
         boss.frame = 0;
